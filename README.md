@@ -1,24 +1,39 @@
-# README
+# School Management System (Rails)
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A web application and API to manage schools, courses, batches, and students with multiple user roles.
 
-Things you may want to cover:
+---
 
-* Ruby version
+## User Roles
 
-* System dependencies
+**Admin**  
+- Create schools and SchoolAdmins.  
 
-* Configuration
+**SchoolAdmin**  
+- Update school info, create courses & batches.  
+- Add students and approve/deny enrolment requests.  
 
-* Database creation
+**Student**  
+- Request enrolment in a batch.  
+- View classmates and batch progress.  
 
-* Database initialization
+---
 
-* How to run the test suite
+## Tech Stack
 
-* Services (job queues, cache servers, search engines, etc.)
+- Ruby on Rails 7  
+- PostgreSQL / MySQL  
+- Devise for authentication  
+- Pundit for authorization / role-based access  
+- RSpec for testing  
 
-* Deployment instructions
+---
 
-* ...
+## Installation
+
+```bash
+git clone <repo-url>
+cd school-management-system
+bundle install
+rails db:create db:migrate db:seed
+rails server
