@@ -1,9 +1,7 @@
 class AuthController < ApplicationController
-  skip_before_action :authenticate_user
-  # skip_before_action :verify_authenticity_token, raise: false 
+  skip_before_action :authenticate_user!
   wrap_parameters false 
 
-  # SIGNUP (tumhara existing)
   def signup
     @user = User.new(user_params)
 
@@ -15,7 +13,6 @@ class AuthController < ApplicationController
   end
 
   def login
-    # 3. Direct params access (permit zaroori hai safety ke liye)
     email = params[:email]
     password = params[:password]
 
@@ -43,7 +40,7 @@ class AuthController < ApplicationController
   private
 
   def user_params
-    params.require(:auth).permit(:email, :password, :role)
+    params.require(:auth).permit(:email, :password, :role, :name, :school_id)
   end
 
   def auth_params

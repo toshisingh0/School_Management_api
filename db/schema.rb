@@ -10,15 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_12_23_173506) do
+ActiveRecord::Schema[8.0].define(version: 2025_12_25_182012) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
   create_table "batch_students", force: :cascade do |t|
-    t.uuid "user_id"
-    t.uuid "batch_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.integer "batch_id"
   end
 
   create_table "batches", force: :cascade do |t|
@@ -39,11 +39,12 @@ ActiveRecord::Schema[8.0].define(version: 2025_12_23_173506) do
   end
 
   create_table "enrollment_requests", force: :cascade do |t|
-    t.uuid "user_id"
-    t.uuid "batch_id"
-    t.integer "status"
+    t.integer "request_status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id", null: false
+    t.integer "batch_id", null: false
+    t.index ["user_id", "batch_id"], name: "index_enrollment_requests_on_user_id_and_batch_id", unique: true
   end
 
   create_table "jwt_denylists", force: :cascade do |t|

@@ -1,20 +1,22 @@
 class Api::V1::CoursesController < ApplicationController
-  # before_action :authenticate_user!
+  before_action :authenticate_user!
+
 
   def create
-  @course = Course.new(course_params)
-  if @course.save
-    render json: @course, status: :created
-  else
-    # This will print the exact errors to your terminal logs
-    puts @course.errors.full_messages 
-    render json: @course.errors, status: :unprocessable_entity
+    course = Course.new(course_params)
+    course.school = current_user.school
+    if course.save
+      render json: course, status: :created
+    else
+      render json: { errors: course.errors.full_messages }, status: :unprocessable_entity
+    end
   end
-  end
+
 
   private
 
   def course_params
-   params.require(:course).permit(:name, :description, :school_id)
+    params.require(:course).permit(:name, :description)
   end
+
 end

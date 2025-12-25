@@ -7,3 +7,23 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+# db/seeds.rb
+
+# Create some sample schools first, as courses need a school_id
+school_1 = School.create!(name: "General Assembly", address: "New York")
+school_2 = School.create!(name: "Codecademy", address: "Online")
+
+# Now create courses using the school IDs
+Course.create!(
+  name: "Advanced Rails",
+  description: "API Development",
+  school_id: school_1.id
+)
+
+Course.create!(
+  name: "Intro to SQL",
+  description: "Database fundamentals",
+  school_id: school_2.id
+)
+
+puts "Database seeded successfully with courses and schools!"
