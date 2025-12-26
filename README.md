@@ -25,7 +25,7 @@ A web application and API to manage schools, courses, batches, and students with
 - PostgreSQL / MySQL  
 - Devise for authentication  
 - Pundit for authorization / role-based access  
-- RSpec for testing  
+- API Testing using Postman  
 
 ---
 
