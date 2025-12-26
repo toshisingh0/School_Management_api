@@ -3,13 +3,13 @@ class Api::V1::CoursesController < ApplicationController
 
 
   def create
-    course = Course.new(course_params)
-    course.school = current_user.school
-    if course.save
-      render json: course, status: :created
-    else
-      render json: { errors: course.errors.full_messages }, status: :unprocessable_entity
-    end
+  course = Course.new(course_params)
+  course.school = current_user.school
+  if course.save
+    render json: course, status: :created
+  else
+    render json: { errors: course.errors.full_messages }, status: :unprocessable_entity
+  end
   end
 
 

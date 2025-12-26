@@ -1,11 +1,15 @@
 class ChangeSchoolIdTypeInCourses < ActiveRecord::Migration[8.0]
-  # def up
-  #   # Explicitly cast the column data using PostgreSQL syntax.
-  #   change_column :courses, :school_id, 'integer USING CAST(school_id AS integer)'
-  # end
+  def change
+    # new column (safe)
+    add_column :courses, :school_id_int, :bigint
 
-  def down
-    # Note: Reverting this change will result in data loss for school_id values
-    change_column :courses, :school_id, :uuid
+    # index (NOT unique)
+    add_index :courses, :school_id_int
+
+    # remove old uuid column
+    remove_column :courses, :school_id, :uuid
+
+    # rename new column
+    rename_column :courses, :school_id_int, :school_id
   end
 end

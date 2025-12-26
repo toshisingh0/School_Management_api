@@ -1,11 +1,12 @@
 class SchoolPolicy < ApplicationPolicy
   def create?
-    user.admin?
+    user.role == "admin"  # only admin can create
   end
 
   def update?
-    user.school_admin?
+    user.role == "school_admin"
   end
+
 
   class Scope < ApplicationPolicy::Scope
     # NOTE: Be explicit about which records you allow access to!

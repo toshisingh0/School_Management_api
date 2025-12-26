@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_12_25_182012) do
+ActiveRecord::Schema[8.0].define(version: 2025_12_26_180635) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -76,9 +76,10 @@ ActiveRecord::Schema[8.0].define(version: 2025_12_25_182012) do
   create_table "schools", force: :cascade do |t|
     t.string "name"
     t.text "address"
-    t.uuid "admin_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "admin_id"
+    t.index ["admin_id"], name: "index_schools_on_admin_id"
   end
 
   create_table "users", force: :cascade do |t|
