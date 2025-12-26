@@ -22,10 +22,10 @@ A web application and API to manage schools, courses, batches, and students with
 ## Tech Stack
 
 - Ruby on Rails 7  
-- PostgreSQL / MySQL  
-- Devise for authentication  
-- Pundit for authorization / role-based access  
-- API Testing using Postman  
+- PostgreSQL
+- Authentication: Custom token-based login using `bcrypt` and `jwt`  
+- Authorization: Role-based access using `enum` in User model + `pundit`  
+- API Testing: Postman (Tests tab)
 
 ---
 
